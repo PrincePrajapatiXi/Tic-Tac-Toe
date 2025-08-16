@@ -396,12 +396,15 @@ body {
 @media (max-width: 480px) {
     body {
         padding: 5px;
+        align-items: flex-start; /* prevent vertical centering cutoff */
     }
     
     .container {
         padding: 12px;
         border-radius: 15px;
-        max-height: calc(100vh - 10px);
+        min-height: 100vh;   /* allow full content expansion */
+        max-height: none;    /* remove height restriction */
+        overflow-y: visible; /* show stats and scores */
     }
     
     .game-board {
@@ -442,6 +445,7 @@ body {
     }
 }
 
+
 @media (max-width: 320px) {
     .game-board {
         grid-template-columns: repeat(3, 65px);
@@ -464,10 +468,12 @@ body {
     }
 }
 
+
 /* Landscape orientation on mobile */
 @media (max-height: 500px) and (orientation: landscape) {
     .container {
-        max-height: 95vh;
+        min-height: 100vh;   /* allow full expansion */
+        max-height: none;    /* fix clipped scoreboard */
         padding: 8px;
     }
     
@@ -480,10 +486,12 @@ body {
     }
 }
 
+
 /* Hidden class */
 .hidden {
     display: none !important;
 }
+
 
 /* iOS Safari specific fixes */
 @supports (-webkit-touch-callout: none) {
@@ -492,12 +500,12 @@ body {
     }
     
     input, select, button {
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 10px;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 10px;
+    }
 }
 
-}
 
 /* Prevent zoom on input focus for iOS */
 @media screen and (max-width: 768px) {
